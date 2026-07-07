@@ -1,0 +1,22 @@
+---
+interface Props {
+    to: string;
+    label: string;
+    isExternal: boolean;
+}
+
+const { to, isExternal, label } = Astro.props;
+---
+
+<a
+    href={to}
+    rel={isExternal ? "noopener noreferrer" : undefined}
+    target={isExternal ? "_blank" : undefined}
+    class="relative py-1 px-2 rounded
+                       bg-linear-to-r from-black to-black bg-size-[0%_100%] bg-left bg-no-repeat
+                       transition-all duration-300 ease-out
+                       hover:bg-size-[100%_100%] hover:text-white"
+>
+    {label}
+    {isExternal && <span class="text-xs ml-0.5 opacity-70">↗</span>}
+</a>

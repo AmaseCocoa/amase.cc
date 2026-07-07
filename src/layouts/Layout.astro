@@ -1,0 +1,108 @@
+---
+import "../styles/global.css";
+
+import { Icon } from "astro-icon/components";
+import NavLink from "../components/NavLink.astro";
+import { ClientRouter } from "astro:transitions";
+
+const socialLinks: {
+    href: string;
+    icon: string;
+}[] = [
+    {
+        href: "https://x.com/mocha_amase",
+        icon: "simple-icons:x",
+    },
+    {
+        href: "https://github.com/AmaseCocoa",
+        icon: "simple-icons:github",
+    },
+    {
+        href: "https://qiita.com/AmaseCocoa",
+        icon: "simple-icons:qiita",
+    },
+];
+
+const pages: {
+    to: string;
+    label: string;
+}[] = [
+    {
+        to: "/",
+        label: "Home",
+    },
+    {
+        to: "https://tw.amase.cc",
+        label: "Blog",
+    },
+];
+---
+
+<html lang="ja" class="h-full">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>amase.cc</title>
+        <ClientRouter />
+    </head>
+    <body class="w-full h-full text-gray-800 antialiased">
+        <div class="flex justify-center items-center min-h-screen w-full p-4">
+            <div
+                class="flex flex-col sm:flex-row gap-6 bg-white border border-gray-200 shadow-md rounded-2xl p-6 sm:p-8 max-w-2xl w-full"
+            >
+                <div
+                    class="flex flex-col items-center sm:items-stretch gap-5 shrink-0 sm:border-r sm:border-gray-200 sm:pr-8"
+                    transition:persist
+                >
+                    <div class="flex flex-col items-center gap-3">
+                        <img
+                            src="https://github.com/AmaseCocoa.png"
+                            class="h-16 w-16 rounded-full object-cover bg-gray-100 ring-4 ring-gray-50 shadow-inner"
+                            alt="ここあのアイコン"
+                        />
+                        <span class="font-bold text-gray-800 text-lg"
+                            >ここあ</span
+                        >
+                    </div>
+
+                    <div class="flex gap-4 justify-center text-gray-500">
+                        {
+                            socialLinks.map((link) => (
+                                <a
+                                    href={link.href}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    class="hover:text-gray-900 transition-colors duration-200"
+                                >
+                                    <Icon name={link.icon} size={18} />
+                                </a>
+                            ))
+                        }
+                    </div>
+
+                    <div
+                        class="flex sm:flex-col gap-4 sm:gap-2 justify-center sm:justify-start items-center sm:items-start border-t sm:border-t-0 pt-4 sm:pt-0 border-gray-100 w-full text-sm font-medium text-gray-600"
+                    >
+                        {
+                            pages.map((v) => {
+                                const isExternal = !v.to.startsWith("/");
+                                return (
+                                    <NavLink to={v.to} label={v.label} isExternal={isExternal} />
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div
+                    class="flex-1 text-gray-600 leading-relaxed pt-2 sm:pt-0 text-center sm:text-left"
+                >
+                    <slot />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
