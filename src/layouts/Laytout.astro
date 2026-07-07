@@ -1,0 +1,90 @@
+---
+import { Icon } from "astro-icon/components";
+import "../styles/global.css";
+
+const socialLinks: {
+    href: string;
+    icon: string;
+}[] = [
+    {
+        href: "https://x.com/mocha_amase",
+        icon: "simple-icons:x",
+    },
+    {
+        href: "https://github.com/AmaseCocoa",
+        icon: "simple-icons:github",
+    },
+    {
+        href: "https://qiita.com/AmaseCocoa",
+        icon: "simple-icons:qiita",
+    },
+];
+
+const pages: {
+    to: string;
+    label: string;
+}[] = [{
+    to: "/",
+    label: "Home"
+},{
+    to: "https://tw.amase.cc",
+    label: "Blog"
+}]
+---
+
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro</title>
+    </head>
+    <body class="w-full h-full">
+        <div class="flex justify-center items-center h-screen w-full">
+            <div
+                class="flex items-center gap-6 bg-white border border-gray-400 shadow-sm rounded-xl p-6 max-w-2xl w-full mx-4"
+            >
+                <div class="grid gap-4">
+                    <div
+                        class="flex items-center gap-3 shrink-0 border-r border-gray-150 border-r-lg pr-6"
+                    >
+                        <img
+                            src="https://github.com/AmaseCocoa.png"
+                            class="h-14 w-14 rounded-full object-cover bg-gray-100"
+                            alt="User avatar"
+                        />
+                        <span class="font-semibold text-gray-700">ここあ</span>
+                    </div>
+                    <div class="flex gap-3 justify-center">
+                        {
+                            socialLinks.map((link) => (
+                                <a
+                                    href={link.href}
+                                    rel="noopener noreferer"
+                                    target="_blank"
+                                >
+                                    <Icon name={link.icon} size={15} />
+                                </a>
+                            ))
+                        }
+                    </div>
+                    <div class="flex flex-col gap-2 items-center">
+                        {pages.map((v) => {
+                            if (v.to.startsWith("/")) {
+                                return <a href={v.to}>{v.label}</a>
+                            } else {
+                                return <a href={v.to} rel="noopener noreferer" target="_blank">{v.label}</a>
+                            }
+                        })}
+                    </div>
+                </div>
+
+                <div class="flex-1 text-gray-600 leading-relaxed">
+                    <slot />
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

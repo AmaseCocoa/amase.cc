@@ -1,0 +1,2 @@
+- 中央にカードを配置する感じ？
+    - 左サイドに固定のavatar + name + pagesを配置して右にcontent
