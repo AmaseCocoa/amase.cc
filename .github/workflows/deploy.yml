@@ -17,7 +17,7 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           repositories: |
             ${{ github.event.repository.name }}
-            your-private-submodule-repo-name
+            amase.cc-part-priv
 
       - name: Checkout Repository with Submodules
         uses: actions/checkout@v7
