@@ -3,6 +3,18 @@ name: Preview Deployment
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'content/**'
+      - 'private'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'wrangler.jsonc'
+      - 'astro.config.mjs'
+      - 'banners.config.ts'
+      - 'website.config.ts'
 
 permissions:
   pull-requests: write
