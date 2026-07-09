@@ -1,0 +1,3 @@
+[submodule "private"]
+	path = private
+	url = https://github.com/AmaseCocoa/amase.cc-part-priv.git
