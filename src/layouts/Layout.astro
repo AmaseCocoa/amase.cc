@@ -6,8 +6,6 @@ import NavLink from "../components/NavLink.astro";
 import { ClientRouter } from "astro:transitions";
 import websiteConfig from "../../website.config";
 import { Image } from "astro:assets";
-import { imageMetadata } from "astro/assets/utils";
-import SEO from "../components/SEO.astro";
 
 const pages: {
   to: string;
@@ -38,7 +36,9 @@ const pages: {
 
     <meta name="generator" content={Astro.generator} />
 
+    <!-- SEO Start -->
     <slot name="seo" />
+    <!-- SEO End -->
 
     <ClientRouter />
   </head>

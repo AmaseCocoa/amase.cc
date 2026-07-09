@@ -1,9 +1,6 @@
-import NotJikan from './src/assets/not-jikan.png';
+const module = await import('./private/banners').catch((error) => {
+  console.warn("[Banners] private part doesn't exist. using empty array:", error);
+  return { default: [] };
+});
 
-import { defineBanners } from "./src/types";
-
-export default defineBanners([{
-    alt: "時間ねぇー",
-    href: "https://sites.google.com/view/happy-busy/",
-    src: NotJikan
-}]);
+export default module.default;
