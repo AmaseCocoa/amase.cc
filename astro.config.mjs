@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import { execSync } from 'node:child_process';
+
 import website from "./website.config";
 
 import tailwindcss from "@tailwindcss/vite";
@@ -7,6 +9,13 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 
 import mdx from "@astrojs/mdx";
+
+let commitHash = 'unknown';
+try {
+  commitHash = execSync('git rev-parse --short HEAD').toString().trim();
+} catch (e) {
+}
+
 // https://astro.build/config
 export default defineConfig({
   site: website.baseUrl,
@@ -19,6 +28,9 @@ export default defineConfig({
           "./private",
         ],
       },
+    },
+    define: {
+      'import.meta.env.APP_COMMIT_HASH': JSON.stringify(commitHash),
     },
   },
 

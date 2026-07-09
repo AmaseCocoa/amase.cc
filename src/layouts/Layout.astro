@@ -24,8 +24,18 @@ const pages: {
     label: "Blog",
   },
 ];
+
+const commitHash = import.meta.env.DEV ? 'dev' : import.meta.env.APP_COMMIT_HASH;
 ---
 
+<Fragment set:html={
+`<!--
+  Built with Commit ID: ${commitHash}
+  "Standing on the shoulders of giants"
+
+  Source Code is here: https://github.com/AmaseCocoa/amase.cc
+-->`
+} />
 <html lang="ja" class="h-full">
   <head>
     <meta charset="utf-8" />
