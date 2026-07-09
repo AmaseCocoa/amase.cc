@@ -1,0 +1,32 @@
+---
+interface Props {
+    image: string;
+
+    name: string;
+    description: string;
+    since: string;
+
+    link?: string;
+}
+
+const { image, name, description, since, link } = Astro.props;
+---
+
+<div class="w-57 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs transition hover:shadow-sm">
+    <div class="h-33 bg-center bg-cover" style={`background-image: url(${image});`}></div>
+
+    <div class="flex flex-col gap-1 p-4">
+        <div class="flex items-center justify-between">
+            <span class="font-bold text-gray-800">{name}</span>
+            <span class="text-sm text-gray-500">{since}</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span>{description}</span>
+        </div>
+        {link && <a href={link} rel="noopener noreferer" target="_blank">
+            <span class="flex items-center gap-2 text-sm text-[#3B444B] hover:text-[#2d343a] lowercase space-x-1 group/link">
+                Visit <span class="text-xs font-bold h-3.5 w-3.5 transform group-hover/link:translate-x-0.5 transition-transform">-></span>
+            </span>
+        </a>}
+    </div>
+</div>

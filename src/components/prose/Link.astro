@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'>;
+
+const { href, ...props } = Astro.props;
+
+const isExternal = typeof href === 'string' && (href.startsWith('http://') || href.startsWith('https://'));
+
+const finalTarget = isExternal ? "_blank" : props.target;
+const finalRel = isExternal ? "noopener noreferrer" : props.rel;
+---
+<a href={href} target={finalTarget} rel={finalRel} {...props}>
+  <slot />
+</a>
